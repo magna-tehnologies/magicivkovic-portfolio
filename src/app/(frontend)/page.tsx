@@ -6,6 +6,7 @@ import config from "@/payload.config";
 import CTAButton from "./components/CTAButton/cta-button";
 import HeaderSection from "./sections/header-section";
 import HeroSection from "./sections/hero-section";
+import WhatWeDoSection from "./sections/what-we-do-section";
 import WorkSection from "./sections/work-section";
 
 const SITE_URL = "http://localhost:3000";
@@ -26,6 +27,7 @@ export default async function HomePage() {
       <HeroSection></HeroSection>
       <CTAButton></CTAButton>
       <WorkSection siteUrl={SITE_URL} videos={videos}></WorkSection>
+      <WhatWeDoSection></WhatWeDoSection>
     </div>
   );
 }
