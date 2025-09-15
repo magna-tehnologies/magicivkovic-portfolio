@@ -8,6 +8,7 @@ import HeaderSection from "./sections/header-section";
 import HeroSection from "./sections/hero-section";
 import VideoSection_1 from "./sections/video-section-1";
 import WhatWeDoSection from "./sections/what-we-do-section";
+import WorkGridSection from "./sections/work-grid-section";
 import WorkSection from "./sections/work-section";
 
 const SITE_URL = "http://localhost:3000";
@@ -35,6 +36,7 @@ export default async function HomePage() {
       {fullScreenVideo_1 && (
         <VideoSection_1 siteUrl={SITE_URL} video={fullScreenVideo_1} />
       )}
+      <WorkGridSection></WorkGridSection>
     </div>
   );
 }
