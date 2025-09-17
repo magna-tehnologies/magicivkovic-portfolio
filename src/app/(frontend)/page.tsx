@@ -6,7 +6,9 @@ import config from "@/payload.config";
 import CTAButton from "./components/CTAButton/cta-button";
 import HeaderSection from "./sections/header-section";
 import HeroSection from "./sections/hero-section";
+import PlacesSection from "./sections/places-section";
 import VideoSection_1 from "./sections/video-section-1";
+import VideoSection_2 from "./sections/video-section_2";
 import WhatWeDoSection from "./sections/what-we-do-section";
 import WorkGridSection from "./sections/work-grid-section";
 import WorkSection from "./sections/work-section";
@@ -37,6 +39,10 @@ export default async function HomePage() {
         <VideoSection_1 siteUrl={SITE_URL} video={fullScreenVideo_1} />
       )}
       <WorkGridSection></WorkGridSection>
+      {fullScreenVideo_1 && (
+        <VideoSection_2 siteUrl={SITE_URL} video={fullScreenVideo_1} />
+      )}
+      <PlacesSection></PlacesSection>
     </div>
   );
 }
