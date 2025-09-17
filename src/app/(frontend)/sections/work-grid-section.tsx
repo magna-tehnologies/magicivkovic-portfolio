@@ -13,13 +13,13 @@ export default function WorkGridSection() {
   ];
 
   return (
-    <section className="px-10 h-screen flex flex-col gap-12">
+    <section className="flex flex-col gap-12 custom-container">
       <p className="text-[64px] font-medium leading-[80px] text-black">
         Sa više od 3 godine iskustva u montaži, stotine preduzetnika i brendova
         angažovalo me da kreiram videe za društvene mreže i marketing kampanje.
       </p>
 
-      <div className="grid grid-cols-2 gap-12 flex-1">
+      <div className="grid grid-cols-2 gap-x-12 ">
         <HighlightCard projects={projects}></HighlightCard>
       </div>
     </section>

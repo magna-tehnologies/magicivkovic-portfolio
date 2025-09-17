@@ -11,12 +11,12 @@ export default function HighlightCard({ projects }: HighlightCardProps) {
   return (
     <>
       {projects.map((project) => (
-        <div key={project.id} className="flex flex-col gap-12">
-          <div className="flex items-center gap-6 ">
-            <span className="text-[32px] font-light text-stone-500 leading-[51.2px] font-poppins">
+        <div key={project.id} className="flex flex-col ">
+          <div className="flex items-center gap-x-[25px]  py-[50px] ">
+            <span className="text-[32px] font-light text-stone-500  font-poppins ">
               {project.id}
             </span>
-            <span className="text-[24px] font-medium text-black leading-[38.4px] font-poppins">
+            <span className="text-[24px] font-bold text-black  font-poppins mr-auto">
               {project.title}
             </span>
           </div>
