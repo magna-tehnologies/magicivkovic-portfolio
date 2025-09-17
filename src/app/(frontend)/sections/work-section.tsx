@@ -23,7 +23,7 @@ export default function WorkSection({ videos, siteUrl }: WorkSectionProps) {
   }, []);
 
   return (
-    <section className="h-[200vh]">
+    <section className="h-[200vh] ">
       <div
         ref={scrollContainerRef}
         className="px-[40px] gap-[50px] sticky top-0 h-screen flex overflow-x-auto"
