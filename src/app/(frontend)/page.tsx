@@ -7,6 +7,7 @@ import CTAButton from "./components/CTAButton/cta-button";
 import HeaderSection from "./sections/header-section";
 import HeroSection from "./sections/hero-section";
 import PlacesSection from "./sections/places-section";
+import TestimonialsSection from "./sections/testimonials-sections";
 import VideoSection_1 from "./sections/video-section-1";
 import VideoSection_2 from "./sections/video-section_2";
 import WhatWeDoSection from "./sections/what-we-do-section";
@@ -27,6 +28,7 @@ export default async function HomePage() {
   const fullScreenVideo_1 = videos.find(
     (video) => video.section === "full-screen-1"
   );
+  const picture = videos.find((video) => video.filename === "paja.jpg");
 
   return (
     <div className="flex flex-col  w-full bg-white overflow-x-hidden ">
@@ -43,6 +45,13 @@ export default async function HomePage() {
         <VideoSection_2 siteUrl={SITE_URL} video={fullScreenVideo_1} />
       )}
       <PlacesSection></PlacesSection>
+
+      {picture && (
+        <TestimonialsSection
+          picture={picture}
+          url={SITE_URL}
+        ></TestimonialsSection>
+      )}
     </div>
   );
 }
