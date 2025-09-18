@@ -4,9 +4,9 @@ import "./globals.css";
 import config from "@/payload.config";
 
 import CTAButton from "./components/CTAButton/cta-button";
+import PlacesSection from "./sections/clients-section";
 import HeaderSection from "./sections/header-section";
 import HeroSection from "./sections/hero-section";
-import PlacesSection from "./sections/places-section";
 import TestimonialsSection from "./sections/testimonials-sections";
 import VideoSection_1 from "./sections/video-section-1";
 import VideoSection_2 from "./sections/video-section_2";
@@ -55,3 +55,6 @@ export default async function HomePage() {
     </div>
   );
 }
+
+//Framer>Gsap
+//animate presence => exit animation

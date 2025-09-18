@@ -8,7 +8,7 @@ interface TestimonialProps {
 export default function Testimonnial({ picture, url }: TestimonialProps) {
   return (
     <div className={"h-[100vh]  bg-purple-900 rounded-2xl px-[40px] flex"}>
-      <div className="flex gap-[10px] pt-[40px]  self-start">
+      <div className="flex gap-[10px] pt-[40px]  self-start absolute">
         <div className="bg-black w-[100px] h-[100px] rounded-full relative">
           <Image
             fill

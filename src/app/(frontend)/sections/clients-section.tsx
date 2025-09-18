@@ -1,4 +1,4 @@
-import ClientCard from "../components/place-section-components/client-card";
+import ClientCard from "../components/clients-section-components/client-card";
 const clients = [
   { place: "Beograd", title: "Kafeterija „Gnezdo“" },
   { place: "Subotica", title: "Restoran „Stari Grad“" },
@@ -16,17 +16,19 @@ const clients = [
   { place: "Beograd", title: "Kafić „Urban“" },
 ];
 
-export default function PlacesSection() {
+export default function ClientsSection() {
   return (
-    <section className={"bg-black"}>
-      <p className={"mx-auto max-w-[1360px] text-[64px] text-white"}>
+    <section className="bg-black">
+      <p className="mx-auto max-w-[1360px] text-[64px] text-white">
         Za mene montaža nije samo da video izgleda lepo. Radim sa klijentima
         koji žele vrhunski kvalitet – bilo da su mali startapovi ili poznate
         kompanije.
       </p>
 
       <div className="grid grid-cols-2 gap-x-12 px-[40px] ">
-        <ClientCard projects={clients}></ClientCard>
+        {clients.map((client) => (
+          <ClientCard key={client.title} client={client}></ClientCard>
+        ))}
       </div>
     </section>
   );
