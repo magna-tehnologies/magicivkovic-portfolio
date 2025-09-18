@@ -5,9 +5,12 @@ import config from "@/payload.config";
 
 import CTAButton from "./components/CTAButton/cta-button";
 import PlacesSection from "./sections/clients-section";
+import FinalWordsSection from "./sections/final-words-section";
+import Footer from "./sections/footer";
 import HeaderSection from "./sections/header-section";
 import HeroSection from "./sections/hero-section";
 import TestimonialsSection from "./sections/testimonials-sections";
+import TrustBuilderSection from "./sections/trust-builder-section";
 import VideoSection_1 from "./sections/video-section-1";
 import VideoSection_2 from "./sections/video-section_2";
 import WhatWeDoSection from "./sections/what-we-do-section";
@@ -52,6 +55,9 @@ export default async function HomePage() {
           url={SITE_URL}
         ></TestimonialsSection>
       )}
+      <TrustBuilderSection></TrustBuilderSection>
+      <FinalWordsSection></FinalWordsSection>
+      <Footer></Footer>
     </div>
   );
 }
