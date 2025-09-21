@@ -3,7 +3,7 @@ import "./globals.css";
 
 import config from "@/payload.config";
 
-import CTAButton from "./components/CTAButton/cta-button";
+import ButtonsContainer from "./components/CTAButton/buttons-container";
 import PlacesSection from "./sections/clients-section";
 import FinalWordsSection from "./sections/final-words-section";
 import Footer from "./sections/footer";
@@ -37,7 +37,7 @@ export default async function HomePage() {
     <div className="flex flex-col  w-full bg-white overflow-x-hidden ">
       <HeaderSection></HeaderSection>
       <HeroSection></HeroSection>
-      <CTAButton></CTAButton>
+      <ButtonsContainer></ButtonsContainer>
       <WorkSection siteUrl={SITE_URL} videos={bulkVideos}></WorkSection>
       <WhatWeDoSection></WhatWeDoSection>
       {fullScreenVideo_1 && (
