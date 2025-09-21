@@ -1,7 +1,7 @@
 "use client";
 
 import { Media } from "@/payload-types";
-import VideoFrame from "../components/WorkSectionComponents/video-frame";
+import VideoFrame from "../components/work-section-components/video-frame";
 
 import { useEffect, useRef } from "react";
 
