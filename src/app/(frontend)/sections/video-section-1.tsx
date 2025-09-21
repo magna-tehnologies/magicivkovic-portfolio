@@ -1,9 +1,11 @@
-import { Media } from "@/payload-types";
-import VideoFrame_1 from "../components/video-section-compononents/video-frame_1";
+'use client'
+
+import { Media } from '@/payload-types'
+import ScalingVideo from '../components/scaling-video'
 
 interface VideoSection_1Props {
-  video: Media;
-  siteUrl: string;
+  video: Media
+  siteUrl: string
 }
 
 export default function VideoSection_1({
@@ -11,10 +13,11 @@ export default function VideoSection_1({
   siteUrl,
 }: VideoSection_1Props) {
   return (
-    <section className="h-[200vh]  pt-[200px] px-[50px] flex">
-      <div className="h-[100vh] bg-black  aspect-[16/9]  rounded-3xl overflow-hidden flex-shrink-1">
-        <VideoFrame_1 video={video} siteUrl={siteUrl}></VideoFrame_1>
-      </div>
+    <section className='h-[2000px] relative'>
+      <ScalingVideo
+        src={siteUrl + video.url}
+        className='h-[100vh] sticky top-0 content-container'
+      />
     </section>
-  );
+  )
 }
