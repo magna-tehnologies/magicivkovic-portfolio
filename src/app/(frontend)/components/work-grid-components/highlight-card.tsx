@@ -11,10 +11,8 @@ export default function HighlightCard({ project }: HighlightCardProps) {
   return (
     <div className='flex flex-col'>
       <div className='flex items-center gap-x-[25px] py-[50px]'>
-        <span className='text-[32px] font-light text-stone-500'>
-          {project.id}
-        </span>
-        <span className='text-[24px] font-medium text-black mr-auto'>
+        <span className='text-3xl font-light text-stone-500'>{project.id}</span>
+        <span className='text-xl md:text-2xl font-medium text-black mr-auto'>
           {project.title}
         </span>
       </div>

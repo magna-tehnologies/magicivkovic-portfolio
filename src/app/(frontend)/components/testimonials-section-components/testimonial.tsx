@@ -1,35 +1,48 @@
-import { Media } from "@/payload-types";
-import Image from "next/image";
+import Image from 'next/image'
+import { cn } from '../../lib/cn'
+
 interface TestimonialProps {
-  picture: Media;
-  url: string;
+  profileUrl: string
+  clientName: string
+  clientRole: string
+  testimonialText: string
+  className?: string
 }
 
-export default function Testimonnial({ picture, url }: TestimonialProps) {
+export default function Testimonial({
+  profileUrl,
+  clientName,
+  clientRole,
+  testimonialText,
+  className,
+}: TestimonialProps) {
   return (
-    <div className={"h-[100vh]  bg-purple-900 rounded-2xl px-[40px] flex"}>
-      <div className="flex gap-[10px] pt-[40px]  self-start absolute">
-        <div className="bg-black w-[100px] h-[100px] rounded-full relative">
-          <Image
+    <div className={cn('bg-purple-950 rounded-2xl flex relative', className)}>
+      <div className='flex gap-[10px] absolute top-4 left-4 lg:top-12 lg:left-12'>
+        <div className='bg-black size-16 lg:size-24 rounded-full relative'>
+          {/* <Image
             fill
-            src={url + picture.url}
-            alt="profile-picture"
-            className="rounded-full"
-          ></Image>
+            src={profileUrl}
+            alt='profile-picture'
+            className='rounded-full'
+          ></Image> */}
         </div>
-        <div className="flex flex-col justify-around">
-          <div className={"text-[20px] text-white"}>Client name</div>
-          <div className={"text-[16px]"}>Client role</div>
+        <div className='flex flex-col gap-2 lg:gap-4 justify-center'>
+          <div className='text-xl leading-none -tracking-[5%] font-medium'>
+            {clientName}
+          </div>
+          <div className='leading-none font-light -tracking-[5%] text-stone-500'>
+            {clientRole}
+          </div>
         </div>
       </div>
       <p
         className={
-          "text-[50px] max-w-[1000px] place-self-center mx-auto text-white/30 font-bold"
+          'text-xl md:text-3xl lg:text-5xl max-w-[1000px] mx-auto place-self-center text-white/30 font-bold px-4'
         }
       >
-        Video koji nam je Ivko montirao doneo je duplo više pregleda na
-        Instagramu nego što smo očekivali. Brz, profesionalan i kreativan!
+        {testimonialText}
       </p>
     </div>
-  );
+  )
 }

@@ -20,12 +20,12 @@ export default function ClientsSection() {
   return (
     <section className='bg-black'>
       <div className='custom-container flex flex-col gap-[50px] pt-[100px]'>
-        <p className='text-[64px] text-white leading-tight tracking-[-5%] font-medium'>
+        <p className='text-3xl md:text-5xl lg:text-6xl text-white leading-tight tracking-[-5%] font-medium'>
           Za mene montaža nije samo da video izgleda lepo. Radim sa klijentima
           koji žele vrhunski kvalitet – bilo da su mali startapovi ili poznate
           kompanije.
         </p>
-        <div className='grid grid-cols-2 gap-x-12'>
+        <div className='grid md:grid-cols-2 gap-x-12'>
           {clients.map((client) => (
             <ClientCard key={client.title} client={client}></ClientCard>
           ))}

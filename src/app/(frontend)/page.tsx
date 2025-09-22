@@ -3,7 +3,6 @@ import './globals.css'
 
 import config from '@/payload.config'
 
-import ButtonsContainer from './components/CTAButton/buttons-container'
 import PlacesSection from './sections/clients-section'
 import FinalWordsSection from './sections/final-words-section'
 import Footer from './sections/footer'
@@ -16,8 +15,37 @@ import VideoSection_2 from './sections/video-section_2'
 import WhatWeDoSection from './sections/what-we-do-section'
 import WorkGridSection from './sections/work-grid-section'
 import WorkSection from './sections/work-section'
+import CTAButton from './components/CTAButton/cta-button'
+import CarouselProvider from './providers/carousel-provider'
+import CTAProvider from './providers/cta-provider'
 
-const SITE_URL = 'http://localhost:3000'
+export interface TestimonialType {
+  clientName: string
+  clientRole: string
+  profileUrl?: string
+  testimonialText: string
+}
+
+const testimonials: TestimonialType[] = [
+  {
+    clientName: 'Marko Markovic',
+    clientRole: 'CEO, Company X',
+    testimonialText:
+      'Magic Ivkovic je neverovatan u onome što radi. Njegova kreativnost i pažnja prema detaljima su impresivni. Toplo ga preporučujem!',
+  },
+  {
+    clientName: 'Jelena Jovanovic',
+    clientRole: 'Marketing Manager, Brand Y',
+    testimonialText:
+      'Rad sa Magicom je bio pravo zadovoljstvo. Njegova sposobnost da razume naše potrebe i pretvori ih u vizuelno zadivljujući sadržaj je izvanredna.',
+  },
+  {
+    clientName: 'Nikola Nikolic',
+    clientRole: 'Freelancer',
+    testimonialText:
+      'Magic Ivkovic je pravi profesionalac. Njegova posvećenost i strast prema onome što radi su očigledni u svakom projektu na kojem smo radili zajedno.',
+  },
+]
 
 export default async function HomePage() {
   const payloadConfig = await config
@@ -31,36 +59,33 @@ export default async function HomePage() {
   const fullScreenVideo_1 = videos.find(
     (video) => video.section === 'full-screen-1'
   )
-  const picture = videos.find((video) => video.filename === 'paja.jpg')
 
   return (
-    <div className='bg-white'>
-      <HeaderSection></HeaderSection>
-      <HeroSection></HeroSection>
-      {/* <ButtonsContainer></ButtonsContainer> */}
-      <WorkSection siteUrl={SITE_URL} videos={bulkVideos}></WorkSection>
-      <WhatWeDoSection></WhatWeDoSection>
-      {fullScreenVideo_1 && (
-        <VideoSection_1 siteUrl={SITE_URL} video={fullScreenVideo_1} />
-      )}
-      <WorkGridSection></WorkGridSection>
-      {fullScreenVideo_1 && (
-        <VideoSection_2 siteUrl={SITE_URL} video={fullScreenVideo_1} />
-      )}
-      <PlacesSection></PlacesSection>
-
-      {picture && (
+    <CTAProvider>
+      <CarouselProvider>
+        <div className='flex flex-col md:h-[70vh]'>
+          <HeaderSection />
+          <HeroSection className='flex-1' />
+        </div>
+        <CTAButton className='fixed bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50' />
+        <WorkSection className='pt-[10vh]' videos={bulkVideos} />
+        <WhatWeDoSection className='pt-[50px]' />
+        {fullScreenVideo_1 && (
+          <VideoSection_1 video={fullScreenVideo_1} className='pt-[100px]' />
+        )}
+        <WorkGridSection />
+        {fullScreenVideo_1 && (
+          <VideoSection_2 video={fullScreenVideo_1} className='pt-[200px]' />
+        )}
+        <PlacesSection />
         <TestimonialsSection
-          picture={picture}
-          url={SITE_URL}
-        ></TestimonialsSection>
-      )}
-      <TrustBuilderSection></TrustBuilderSection>
-      <FinalWordsSection></FinalWordsSection>
-      <Footer></Footer>
-    </div>
+          testimonials={testimonials}
+          className='pt-[200px]'
+        />
+        <TrustBuilderSection />
+        <FinalWordsSection />
+        <Footer />
+      </CarouselProvider>
+    </CTAProvider>
   )
 }
-
-//Framer>Gsap
-//animate presence => exit animation

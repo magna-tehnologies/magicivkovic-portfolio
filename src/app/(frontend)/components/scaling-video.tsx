@@ -24,9 +24,10 @@ export default function ScalingVideo({ src, className }: ScalingVideoProps) {
         }}
         className='h-full w-full object-cover rounded-3xl'
         autoPlay
+        loop
         muted
         src={src}
-      ></motion.video>
+      />
     </div>
   )
 }

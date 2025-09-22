@@ -1,69 +1,118 @@
-"use client";
-import { AnimatePresence, motion } from "framer-motion";
-import { TextAlignJustify } from "lucide-react";
-import { useState } from "react";
+'use client'
 
-const CTAButton = () => {
-  const [buttonClicked, setButtonClicked] = useState(false);
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+import { useCarousel } from '../../providers/carousel-provider'
+import { cn } from '../../lib/cn'
+import { useCTA } from '../../providers/cta-provider'
+import { AnimatePresence, motion } from 'framer-motion'
+import useMeasure from 'react-use-measure'
 
-  function handleClick() {
-    setButtonClicked((prevState) => !prevState);
-  }
+interface CTAButtonProps {
+  className?: string
+}
+
+const CTAButton = ({ className }: CTAButtonProps) => {
+  const { state } = useCTA()
+  const { goToNextSlide, goToPrevSlide } = useCarousel()
+  const [ref, { width }] = useMeasure()
 
   return (
     <motion.div
-      className=" flex bg-red-500 rounded-2xl"
-      animate={{
-        width: buttonClicked ? 600 : 289,
-        height: buttonClicked ? 370 : 69,
+      layout
+      style={{
+        overflow: 'hidden',
+        width,
       }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
+      transition={{
+        ease: 'linear',
+        layout: {
+          duration: 0.5,
+        },
+      }}
+      className={cn(
+        'h-16 rounded-[24px] bg-stone-900 transition-all flex justify-center',
+        state == 'course' && 'bg-red-500',
+        className
+      )}
     >
-      <AnimatePresence mode="wait">
-        {buttonClicked ? (
-          <motion.div
-            key="expanded"
-            className="flex flex-col justify-between items-start pr-1.5 pl-6 py-1  w-full"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-          >
-            <div className="text-left text-black m-0 text-[32px]">
-              <p>Hajde da počnemo!</p>
-              <p>
-                Podeli sa mnom nekoliko osnovnih detalja i započinjemo priču.
-              </p>
-              <button className="rounded-2xl bg-black text-white p-2 ">
-                Započni
-              </button>
-            </div>
-            <div
-              onClick={handleClick}
-              className="flex flex-col self-end justify-center  p-[15]  ml-auto px-3"
+      <div className='w-min h-full' ref={ref}>
+        <AnimatePresence mode='wait'>
+          {state == 'default' && (
+            <motion.button
+              key='default'
+              className='flex h-full items-center'
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5 },
+              }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.5 },
+              }}
             >
-              <TextAlignJustify />
-            </div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="collapsed"
-            onClick={handleClick}
-            className="hover:bg-red-700 rounded-2xl flex items-center  pr-1.5 pl-6 py-1 w-full"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25 }}
-          >
-            <span className="text-black text-[20px]">Šta ti je potrebno?</span>
-            <div className="flex flex-col justify-center items-center gap-1.5 rounded-2xl h-[60px] bg-black ml-auto self-stretch px-3">
-              <TextAlignJustify />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <div className='px-8'>
+                <p className='text-nowrap text-xl -tracking-[5%] text-stone-600 hover:text-white transition-colors'>
+                  Sta ti je potrebno?
+                </p>
+              </div>
+              <div className='rounded-[20px] bg-stone-950 aspect-square h-full'></div>
+            </motion.button>
+          )}
+          {state == 'course' && (
+            <motion.button
+              key='course'
+              className='flex h-full items-center'
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5 },
+              }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.5 },
+              }}
+            >
+              <div className='px-8'>
+                <p className='text-nowrap text-xl -tracking-[5%] text-stone-800 hover:text-stone-950 transition-colors'>
+                  Prijavi se na kurs
+                </p>
+              </div>
+              <div className='rounded-[20px] bg-stone-950 aspect-square h-full'></div>
+            </motion.button>
+          )}
+          {state == 'carousel' && (
+            <motion.div
+              key='carousel'
+              className='flex gap-2 p-1 h-full'
+              initial={{ opacity: 0 }}
+              animate={{
+                opacity: 1,
+                transition: { duration: 0.5 },
+              }}
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.5 },
+              }}
+            >
+              <button
+                className='aspect-square h-full bg-stone-950 flex items-center justify-center rounded-[20px]'
+                onClick={goToPrevSlide}
+              >
+                <ChevronLeftIcon className='text-stone-600' />
+              </button>
+              <button
+                className='aspect-square h-full bg-stone-950 flex items-center justify-center rounded-[20px]'
+                onClick={goToNextSlide}
+              >
+                <ChevronRightIcon className='text-stone-600' />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </motion.div>
-  );
-};
+  )
+}
 
-export default CTAButton;
+export default CTAButton
