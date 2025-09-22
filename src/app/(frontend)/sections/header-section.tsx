@@ -1,9 +1,11 @@
-export default function HeaderSection() {
+interface HeaderSectionProps {
+  brandName: string
+}
+
+export default function HeaderSection({ brandName }: HeaderSectionProps) {
   return (
     <header className='h-[100px] flex items-center justify-between p'>
-      <p className='text-2xl font-bold col-span-1 md:col-span-3'>
-        MAGICIVKOVIC
-      </p>
+      <p className='text-2xl font-bold col-span-1 md:col-span-3'>{brandName}</p>
       <div className='font-medium col-span-1 text-end md:hidden'>Menu</div>
       <div className='gap-5 col-span-7 justify-end items-center hidden md:flex'>
         <a className='font-medium'>INSTAGRAM</a>

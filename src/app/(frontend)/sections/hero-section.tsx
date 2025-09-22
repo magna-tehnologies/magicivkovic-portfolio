@@ -1,6 +1,10 @@
 import { cn } from '../lib/cn'
 
 interface HeroSectionProps {
+  hook: string
+  footer_1: string
+  footer_2: string
+  footer_3: string
   className?: string
 }
 

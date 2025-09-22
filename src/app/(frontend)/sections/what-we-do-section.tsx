@@ -1,10 +1,14 @@
 import { cn } from '../lib/cn'
 
 interface WhatWeDoSectionProps {
+  text: string
   className?: string
 }
 
-export default function WhatWeDoSection({ className }: WhatWeDoSectionProps) {
+export default function WhatWeDoSection({
+  text,
+  className,
+}: WhatWeDoSectionProps) {
   return (
     <section className={cn('p', className)}>
       <div
@@ -13,9 +17,7 @@ export default function WhatWeDoSection({ className }: WhatWeDoSectionProps) {
           'px-4 pt-16 pb-20 md:px-16 md:pt-20 md:pb-24 lg:px-20 lg:pt-24 lg:pb-32'
         )}
       >
-        Ja sam Aleksa i vodim projekte koji donose rezultate kroz marketing i
-        video. Svaki projekat za mene je više od zadatka – to je prilika da
-        inspirišem, učim i pomognem ljudima da vide svoj potencijal.
+        {text}
       </div>
     </section>
   )

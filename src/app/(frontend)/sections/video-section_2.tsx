@@ -8,15 +8,17 @@ import { useCTA } from '../providers/cta-provider'
 import { motion, useInView } from 'framer-motion'
 import { cn } from '../lib/cn'
 
-interface VideoSection_2Props {
+interface VideoSectionProps {
   video: Media
+  headerText: string
   className?: string
 }
 
-export default function VideoSection_1({
+export default function VideoSection1({
   video,
   className,
-}: VideoSection_2Props) {
+  headerText,
+}: VideoSectionProps) {
   const { setState } = useCTA()
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -36,9 +38,7 @@ export default function VideoSection_1({
     >
       <div className='p w-full'>
         <p className='font-medium text-5xl md:text-8xl leading-none'>
-          Nauči veštine.
-          <br />
-          Rade.
+          {headerText}
         </p>
       </div>
       <ScalingVideo

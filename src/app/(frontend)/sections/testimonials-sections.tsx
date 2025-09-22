@@ -2,22 +2,35 @@
 
 import Testimonial from '../components/testimonials-section-components/testimonial'
 import { SITE_URL } from '@/config'
-import { TestimonialType } from '../page'
 import { useCTA } from '../providers/cta-provider'
 import { useCarousel } from '../providers/carousel-provider'
 import { useEffect } from 'react'
 import { useInView, useScroll, useTransform, motion } from 'framer-motion'
 import { cn } from '../lib/cn'
 
-interface TestimonialSectionProps {
-  testimonials: TestimonialType[]
+export interface TestimonialPicture {
+  url: string
+  alt: string
+}
+
+export interface Testimonial {
+  client: string
+  clientRole: string
+  testimonial: string
+  picture: TestimonialPicture
+}
+
+export interface TestimonialsSectionProps {
+  testimonials: Testimonial[]
+  testimonialHeader: string
   className?: string
 }
 
 export default function TestimonialsSection({
   testimonials,
+  testimonialHeader,
   className,
-}: TestimonialSectionProps) {
+}: TestimonialsSectionProps) {
   const { carouselContainerRef } = useCarousel()
   const { setState } = useCTA()
 
@@ -45,7 +58,7 @@ export default function TestimonialsSection({
     >
       <div className='p'>
         <p className='text-5xl md:text-7xl lg:text-8xl text-white font-medium'>
-          Klijenti najbolje govore o mom radu.
+          {testimonialHeader}
         </p>
       </div>
       <motion.div
@@ -57,33 +70,32 @@ export default function TestimonialsSection({
       >
         <Testimonial
           className='w-full shrink-0 h-full'
-          key={testimonials[testimonials.length - 1].clientName}
-          clientName={testimonials[testimonials.length - 1].clientName}
-          clientRole={testimonials[testimonials.length - 1].clientName}
-          profileUrl={
-            SITE_URL + testimonials[testimonials.length - 1].profileUrl
-          }
-          testimonialText={
-            testimonials[testimonials.length - 1].testimonialText
-          }
+          key={testimonials[testimonials.length - 1].client}
+          client={testimonials[testimonials.length - 1].client}
+          clientRole={testimonials[testimonials.length - 1].client}
+          picture={testimonials[testimonials.length - 1].picture}
+          src={SITE_URL + testimonials[testimonials.length - 1].picture.url}
+          testimonial={testimonials[testimonials.length - 1].testimonial}
         />
-        {testimonials.map((testimonial) => (
+        {testimonials.map((testimonial, index) => (
           <Testimonial
+            key={testimonial.client + index}
             className='w-full shrink-0 h-full'
-            key={testimonial.clientName}
-            clientName={testimonial.clientName}
-            clientRole={testimonial.clientName}
-            profileUrl={SITE_URL + testimonial.profileUrl}
-            testimonialText={testimonial.testimonialText}
+            picture={testimonial.picture}
+            client={testimonial.client}
+            clientRole={testimonial.clientRole}
+            testimonial={testimonial.testimonial}
+            src={SITE_URL + testimonial.picture.url}
           />
         ))}
         <Testimonial
           className='w-full shrink-0 h-full'
-          key={testimonials[0].clientName}
-          clientName={testimonials[0].clientName}
-          clientRole={testimonials[0].clientName}
-          profileUrl={SITE_URL + testimonials[0].profileUrl}
-          testimonialText={testimonials[0].testimonialText}
+          key={testimonials[0].client}
+          client={testimonials[0].client}
+          picture={testimonials[0].picture}
+          clientRole={testimonials[0].client}
+          src={SITE_URL + testimonials[0].picture.url}
+          testimonial={testimonials[0].testimonial}
         />
       </motion.div>
     </section>
