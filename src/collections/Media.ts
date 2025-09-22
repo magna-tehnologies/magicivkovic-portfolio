@@ -18,6 +18,7 @@ export const Media: CollectionConfig = {
       options: [
         { label: "Bulk Videos", value: "bulk" },
         { label: "First Full Screen Video", value: "full-screen-1" },
+        { label: "Second Full Screen Video", value: "full-screen-2" },
       ],
     },
   ],
