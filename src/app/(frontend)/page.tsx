@@ -18,13 +18,19 @@ import VideoSection2 from './sections/video-section_2'
 import WhatWeDoSection from './sections/what-we-do-section'
 import WorkGridSection from './sections/work-grid-section'
 import WorkSection from './sections/work-section'
-import ClientsSection from './sections/clients-section'
-
-const SITE_URL = 'http://localhost:3000'
+import ClientsSection, { Client } from './sections/clients-section'
+import { RefreshRouteOnSave } from '../RefreshRouteOnSave'
 
 export default async function HomePage() {
   const payloadConfig = await config
   const payload = await getPayload({ config: payloadConfig })
+
+  const content = await payload.findGlobal({
+    draft: true,
+    slug: 'content',
+    depth: 99,
+  })
+
   const media = await payload.find({
     collection: 'media',
   })
@@ -34,12 +40,13 @@ export default async function HomePage() {
     limit: 100,
   })
 
-  const headerText = texts.docs.filter((text) =>
-    text.section.startsWith('hero')
+  const headerText = texts.docs.filter(
+    (text) => text.section && text.section.startsWith('hero')
   )
 
   const headerObject = headerText.reduce(
     (acc, item) => {
+      if (!item.section) return acc
       const trim = item.section.replace('hero-section-', '')
       acc[trim] = item.text
       return acc
@@ -73,9 +80,9 @@ export default async function HomePage() {
     (text) => text.section === 'clients-section-header'
   )
 
-  const clientCardProps = clientCards.docs.map((clientCard) => ({
-    place: clientCard.Place,
-    client: clientCard.Client,
+  const clientCardProps: Client[] = clientCards.docs.map((clientCard) => ({
+    place: clientCard.Place || '',
+    client: clientCard.Client || '',
   }))
 
   const testimonials = await payload.find({
@@ -130,9 +137,10 @@ export default async function HomePage() {
 
   return (
     <CTAProvider>
+      <RefreshRouteOnSave />
       <CarouselProvider>
         <div className='flex flex-col md:h-[70vh]'>
-          {brandName && <HeaderSection brandName={brandName.text} />}
+          <HeaderSection brandName={content.heroSectionHeader} />
           {brandName && (
             <HeroSection
               footer_3={headerObject['footer-3']}
@@ -173,7 +181,7 @@ export default async function HomePage() {
         )}
         {testimonialHeader && (
           <TestimonialsSection
-            testimonials={testimonialsProps}
+            testimonials={content.testimonials}
             testimonialHeader={testimonialHeader.text}
             className='pt-[200px]'
           />

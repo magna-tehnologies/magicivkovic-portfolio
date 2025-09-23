@@ -1,31 +1,31 @@
-import type { CollectionConfig } from "payload";
+import type { CollectionConfig } from 'payload'
 
 export const Testemonial: CollectionConfig = {
-  slug: "testemonial",
+  slug: 'testemonial',
   access: {
     read: () => true,
   },
   fields: [
     {
-      name: "client",
-      type: "text",
+      name: 'client',
+      type: 'text',
       required: true,
     },
     {
-      name: "client-role",
-      type: "text",
+      name: 'clientRole',
+      type: 'text',
       required: true,
     },
     {
-      name: "testemonial",
-      type: "text",
+      name: 'testemonial',
+      type: 'text',
       required: true,
     },
     {
-      name: "picture",
-      type: "upload",
-      relationTo: "media",
+      name: 'picture',
+      type: 'upload',
+      relationTo: 'media',
       required: true,
     },
   ],
-};
+}

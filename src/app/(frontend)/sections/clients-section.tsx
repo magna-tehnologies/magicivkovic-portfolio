@@ -1,12 +1,12 @@
 import ClientCard from '../components/clients-section-components/client-card'
 
-export interface Clients {
+export interface Client {
   place: string
   client: string
 }
 interface ClientsSectionProps {
   header: string
-  clients: Clients[]
+  clients: Client[]
 }
 export default function ClientsSection({
   header,

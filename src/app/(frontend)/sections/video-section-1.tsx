@@ -5,15 +5,12 @@ import ScalingVideo from '../components/scaling-video'
 import { SITE_URL } from '@/config'
 import { cn } from '../lib/cn'
 
-interface VideoSection_1Props {
+interface VideoSectionProps {
   video: Media
   className?: string
 }
 
-export default function VideoSection_1({
-  video,
-  className,
-}: VideoSection_1Props) {
+export default function VideoSection({ video, className }: VideoSectionProps) {
   return (
     <section className={cn('h-[2000px] relative', className)}>
       <ScalingVideo

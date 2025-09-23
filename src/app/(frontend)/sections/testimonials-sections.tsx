@@ -1,27 +1,16 @@
 'use client'
 
-import Testimonial from '../components/testimonials-section-components/testimonial'
+// import Testimonial from '../components/testimonials-section-components/testimonial'
 import { SITE_URL } from '@/config'
 import { useCTA } from '../providers/cta-provider'
 import { useCarousel } from '../providers/carousel-provider'
 import { useEffect } from 'react'
 import { useInView, useScroll, useTransform, motion } from 'framer-motion'
 import { cn } from '../lib/cn'
-
-export interface TestimonialPicture {
-  url: string
-  alt: string
-}
-
-export interface Testimonial {
-  client: string
-  clientRole: string
-  testimonial: string
-  picture: TestimonialPicture
-}
+import { Content } from '@/payload-types'
 
 export interface TestimonialsSectionProps {
-  testimonials: Testimonial[]
+  testimonials: Content['testimonials']
   testimonialHeader: string
   className?: string
 }
