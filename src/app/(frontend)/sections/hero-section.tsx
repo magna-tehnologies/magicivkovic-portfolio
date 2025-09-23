@@ -1,15 +1,20 @@
-export default function HeroSection() {
+import { cn } from '../lib/cn'
+
+interface HeroSectionProps {
+  hook: string
+  footer_1: string
+  footer_2: string
+  footer_3: string
+  className?: string
+}
+
+export default function HeroSection({ className }: HeroSectionProps) {
   return (
-    <>
-      <div className="mt-2 w-full flex h-4/5 justify-center items-center">
-        <h1 className="text-[10vw]">CONTENT CREATOR</h1>
-      </div>
-      <div className="px-5 flex w-full justify-self-end justify-between">
-        <p className="text-red-600">KURS</p>
-        <p>NEWSLETTER</p>
-        <p>EDITOVANJE</p>
-      </div>
-      ;
-    </>
-  );
+    <div className={cn('flex flex-col gap-20 md:justify-between p', className)}>
+      <img src='ivkovic.svg' className='w-full' />
+      <p className='text-3xl font-medium md:text-5xl'>
+        Kreator za brendove, drustevene mreze i edukaciju
+      </p>
+    </div>
+  )
 }
