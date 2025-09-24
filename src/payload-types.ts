@@ -156,7 +156,6 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
-  section?: ('bulk' | 'full-screen-1' | 'full-screen-2') | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -176,27 +175,6 @@ export interface Media {
 export interface Text {
   id: number;
   text: string;
-  section?:
-    | (
-        | 'brand-name'
-        | 'hero-section-hook'
-        | 'hero-section-footer-1'
-        | 'hero-section-footer-2'
-        | 'hero-section-footer-3'
-        | 'what-we-do-section'
-        | 'work-grid-section-header'
-        | 'scaling-video-1-header'
-        | 'clients-section-header'
-        | 'testemonial-header'
-        | 'trust-builder-header'
-        | 'trust-builder-text'
-        | 'final-words-text-1'
-        | 'final-words-text-2'
-        | 'final-words-text-3'
-        | 'footer-text'
-        | 'footer-rights'
-      )
-    | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -207,7 +185,7 @@ export interface Text {
 export interface ClientCard {
   id: number;
   Client: string;
-  Place?: string | null;
+  Place: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -335,7 +313,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  section?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -354,7 +331,6 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface TextsSelect<T extends boolean = true> {
   text?: T;
-  section?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -428,7 +404,25 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface Content {
   id: number;
   heroSectionHeader: string;
+  heroSectionText: string;
+  bulkVideos: (number | Media)[];
+  whatWeDo: string;
+  fullScreenVideo: number | Media;
+  workGridHeading: string;
+  workGridCards: (number | WorkGridCard)[];
+  secondVideoText: string;
+  secondFullScreenVideo: number | Media;
+  clientCardHeading: string;
+  clientCards: (number | ClientCard)[];
+  testimonialText: string;
   testimonials: (number | Testemonial)[];
+  trustBuilderHeading: string;
+  trustBuilderText: string;
+  finalWordsText: string;
+  secondFinalWordsText: string;
+  thirdFinalWordsText: string;
+  footerText: string;
+  rightsText: string;
   _status?: ('draft' | 'published') | null;
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -439,7 +433,25 @@ export interface Content {
  */
 export interface ContentSelect<T extends boolean = true> {
   heroSectionHeader?: T;
+  heroSectionText?: T;
+  bulkVideos?: T;
+  whatWeDo?: T;
+  fullScreenVideo?: T;
+  workGridHeading?: T;
+  workGridCards?: T;
+  secondVideoText?: T;
+  secondFullScreenVideo?: T;
+  clientCardHeading?: T;
+  clientCards?: T;
+  testimonialText?: T;
   testimonials?: T;
+  trustBuilderHeading?: T;
+  trustBuilderText?: T;
+  finalWordsText?: T;
+  secondFinalWordsText?: T;
+  thirdFinalWordsText?: T;
+  footerText?: T;
+  rightsText?: T;
   _status?: T;
   updatedAt?: T;
   createdAt?: T;

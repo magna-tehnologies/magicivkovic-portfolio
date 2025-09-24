@@ -11,16 +11,6 @@ export const Media: CollectionConfig = {
       type: "text",
       required: true,
     },
-    {
-      name: "section",
-      type: "select",
-      required: false,
-      options: [
-        { label: "Bulk Videos", value: "bulk" },
-        { label: "First Full Screen Video", value: "full-screen-1" },
-        { label: "Second Full Screen Video", value: "full-screen-2" },
-      ],
-    },
   ],
   upload: true,
 };
