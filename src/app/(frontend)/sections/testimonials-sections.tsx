@@ -1,92 +1,112 @@
-'use client'
+"use client";
 
-// import Testimonial from '../components/testimonials-section-components/testimonial'
-import { SITE_URL } from '@/config'
-import { useCTA } from '../providers/cta-provider'
-import { useCarousel } from '../providers/carousel-provider'
-import { useEffect } from 'react'
-import { useInView, useScroll, useTransform, motion } from 'framer-motion'
-import { cn } from '../lib/cn'
-import { Content } from '@/payload-types'
+import { SITE_URL } from "@/config";
+import { Content, Media } from "@/payload-types";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useEffect } from "react";
+import Testimonial from "../components/testimonials-section-components/testimonial";
+import { cn } from "../lib/cn";
+import { useCarousel } from "../providers/carousel-provider";
+import { useCTA } from "../providers/cta-provider";
 
 export interface TestimonialsSectionProps {
-  testimonials: Content['testimonials']
-  testimonialHeader: string
-  className?: string
+  testimonials: Content["testimonials"];
+  testimonialHeader: string;
+  className?: string;
 }
+
+// refined type: always object, picture is Media
+type TestimonialWithMedia = Exclude<Content["testimonials"][number], number> & {
+  picture: Media;
+};
 
 export default function TestimonialsSection({
   testimonials,
   testimonialHeader,
   className,
 }: TestimonialsSectionProps) {
-  const { carouselContainerRef } = useCarousel()
-  const { setState } = useCTA()
+  const { carouselContainerRef } = useCarousel();
+  const { setState } = useCTA();
 
   const inView = useInView(carouselContainerRef, {
     amount: 1,
-  })
+  });
 
   useEffect(() => {
     if (inView) {
-      setState('carousel')
+      setState("carousel");
     } else {
-      setState('default')
+      setState("default");
     }
-  }, [inView, setState])
+  }, [inView, setState]);
 
   const { scrollYProgress } = useScroll({
     target: carouselContainerRef,
-    offset: ['start end', 'start start'],
-  })
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1])
+    offset: ["start end", "start start"],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+
+  // filter out numbers and testimonials with picture = number
+  const objectTestimonials = testimonials.filter(
+    (t): t is TestimonialWithMedia =>
+      typeof t !== "number" && typeof t.picture !== "number"
+  );
 
   return (
     <section
-      className={cn('bg-black h-[2000px] flex flex-col gap-10', className)}
+      className={cn("bg-black h-[2000px] flex flex-col gap-10", className)}
     >
-      <div className='p'>
-        <p className='text-5xl md:text-7xl lg:text-8xl text-white font-medium'>
+      <div className="p">
+        <p className="text-5xl md:text-7xl lg:text-8xl text-white font-medium">
           {testimonialHeader}
         </p>
       </div>
       <motion.div
         ref={carouselContainerRef}
-        className='content-container flex gap-5 overflow-x-scroll sticky top-0 h-[100vh]'
+        className="content-container flex gap-5 overflow-x-scroll sticky top-0 h-[100vh]"
         style={{
           scale,
         }}
       >
         <Testimonial
-          className='w-full shrink-0 h-full'
-          key={testimonials[testimonials.length - 1].client}
-          client={testimonials[testimonials.length - 1].client}
-          clientRole={testimonials[testimonials.length - 1].client}
-          picture={testimonials[testimonials.length - 1].picture}
-          src={SITE_URL + testimonials[testimonials.length - 1].picture.url}
-          testimonial={testimonials[testimonials.length - 1].testimonial}
+          className="w-full shrink-0 h-full"
+          key={objectTestimonials[objectTestimonials.length - 1].client}
+          client={objectTestimonials[objectTestimonials.length - 1].client}
+          clientRole={
+            objectTestimonials[objectTestimonials.length - 1].clientRole
+          }
+          picture={objectTestimonials[objectTestimonials.length - 1].picture}
+          src={
+            SITE_URL +
+            objectTestimonials[objectTestimonials.length - 1].picture.url
+          }
+          testimonial={
+            objectTestimonials[objectTestimonials.length - 1].testemonial
+          }
         />
-        {testimonials.map((testimonial, index) => (
+
+        {objectTestimonials.map((testimonial, index) => (
           <Testimonial
             key={testimonial.client + index}
-            className='w-full shrink-0 h-full'
+            className="w-full shrink-0 h-full"
             picture={testimonial.picture}
             client={testimonial.client}
             clientRole={testimonial.clientRole}
-            testimonial={testimonial.testimonial}
+            testimonial={testimonial.testemonial}
             src={SITE_URL + testimonial.picture.url}
           />
         ))}
+
         <Testimonial
-          className='w-full shrink-0 h-full'
-          key={testimonials[0].client}
-          client={testimonials[0].client}
-          picture={testimonials[0].picture}
-          clientRole={testimonials[0].client}
-          src={SITE_URL + testimonials[0].picture.url}
-          testimonial={testimonials[0].testimonial}
+          className="w-full shrink-0 h-full"
+          key={objectTestimonials[0].client}
+          client={objectTestimonials[0].client}
+          clientRole={objectTestimonials[0].clientRole}
+          picture={objectTestimonials[0].picture}
+          src={SITE_URL + objectTestimonials[0].picture.url}
+          testimonial={objectTestimonials[0].testemonial}
         />
       </motion.div>
     </section>
-  )
+  );
 }

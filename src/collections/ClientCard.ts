@@ -14,7 +14,7 @@ export const ClientCard: CollectionConfig = {
     {
       name: "Place",
       type: "text",
-      required: false,
+      required: true,
     },
   ],
 };
