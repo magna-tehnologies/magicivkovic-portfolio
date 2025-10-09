@@ -4,11 +4,16 @@ import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { fileURLToPath } from 'url'
 import sharp from 'sharp'
+import { fileURLToPath } from 'url'
 
-import { Users } from './collections/Users'
+import { ClientCard } from './collections/ClientCard'
 import { Media } from './collections/Media'
+import { Testemonial } from './collections/Testemonial'
+import { Text } from './collections/Text'
+import { Users } from './collections/Users'
+import { WorkGridCard } from './collections/WorkGridCard'
+import { Content } from './globals/content'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -19,11 +24,9 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    livePreview: {
-      url: 'http://localhost:3000',
-    },
   },
-  collections: [Users, Media],
+  collections: [Users, Media, Text, ClientCard, Testemonial, WorkGridCard],
+  globals: [Content],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -31,7 +34,8 @@ export default buildConfig({
   },
   db: sqliteAdapter({
     client: {
-      url: process.env.DATABASE_URI || '',
+      url: process.env.TURSO_DATABASE_URL || '',
+      authToken: process.env.TURSO_AUTH_TOKEN,
     },
   }),
   sharp,

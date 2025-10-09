@@ -69,6 +69,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    texts: Text;
+    'client-card': ClientCard;
+    testemonial: Testemonial;
+    'work-grid-card': WorkGridCard;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,15 +81,23 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    texts: TextsSelect<false> | TextsSelect<true>;
+    'client-card': ClientCardSelect<false> | ClientCardSelect<true>;
+    testemonial: TestemonialSelect<false> | TestemonialSelect<true>;
+    'work-grid-card': WorkGridCardSelect<false> | WorkGridCardSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    content: Content;
+  };
+  globalsSelect: {
+    content: ContentSelect<false> | ContentSelect<true>;
+  };
   locale: null;
   user: User & {
     collection: 'users';
@@ -118,7 +130,7 @@ export interface UserAuthOperations {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -142,7 +154,7 @@ export interface User {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   updatedAt: string;
   createdAt: string;
@@ -158,23 +170,83 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "texts".
+ */
+export interface Text {
+  id: number;
+  text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "client-card".
+ */
+export interface ClientCard {
+  id: number;
+  Client: string;
+  Place: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testemonial".
+ */
+export interface Testemonial {
+  id: number;
+  client: string;
+  clientRole: string;
+  testemonial: string;
+  picture: number | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "work-grid-card".
+ */
+export interface WorkGridCard {
+  id: number;
+  text: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'texts';
+        value: number | Text;
+      } | null)
+    | ({
+        relationTo: 'client-card';
+        value: number | ClientCard;
+      } | null)
+    | ({
+        relationTo: 'testemonial';
+        value: number | Testemonial;
+      } | null)
+    | ({
+        relationTo: 'work-grid-card';
+        value: number | WorkGridCard;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -184,10 +256,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -207,7 +279,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -255,6 +327,46 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "texts_select".
+ */
+export interface TextsSelect<T extends boolean = true> {
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "client-card_select".
+ */
+export interface ClientCardSelect<T extends boolean = true> {
+  Client?: T;
+  Place?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testemonial_select".
+ */
+export interface TestemonialSelect<T extends boolean = true> {
+  client?: T;
+  clientRole?: T;
+  testemonial?: T;
+  picture?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "work-grid-card_select".
+ */
+export interface WorkGridCardSelect<T extends boolean = true> {
+  text?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents_select".
  */
 export interface PayloadLockedDocumentsSelect<T extends boolean = true> {
@@ -284,6 +396,66 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content".
+ */
+export interface Content {
+  id: number;
+  heroSectionHeader?: string | null;
+  heroSectionText?: string | null;
+  bulkVideos?: (number | Media)[] | null;
+  whatWeDo?: string | null;
+  fullScreenVideo?: (number | null) | Media;
+  workGridHeading?: string | null;
+  workGridCards?: (number | WorkGridCard)[] | null;
+  secondVideoText?: string | null;
+  secondFullScreenVideo?: (number | null) | Media;
+  clientCardHeading?: string | null;
+  clientCards?: (number | ClientCard)[] | null;
+  testimonialText?: string | null;
+  testimonials?: (number | Testemonial)[] | null;
+  trustBuilderHeading?: string | null;
+  trustBuilderText?: string | null;
+  finalWordsText?: string | null;
+  secondFinalWordsText?: string | null;
+  thirdFinalWordsText?: string | null;
+  footerText?: string | null;
+  rightsText?: string | null;
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content_select".
+ */
+export interface ContentSelect<T extends boolean = true> {
+  heroSectionHeader?: T;
+  heroSectionText?: T;
+  bulkVideos?: T;
+  whatWeDo?: T;
+  fullScreenVideo?: T;
+  workGridHeading?: T;
+  workGridCards?: T;
+  secondVideoText?: T;
+  secondFullScreenVideo?: T;
+  clientCardHeading?: T;
+  clientCards?: T;
+  testimonialText?: T;
+  testimonials?: T;
+  trustBuilderHeading?: T;
+  trustBuilderText?: T;
+  finalWordsText?: T;
+  secondFinalWordsText?: T;
+  thirdFinalWordsText?: T;
+  footerText?: T;
+  rightsText?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

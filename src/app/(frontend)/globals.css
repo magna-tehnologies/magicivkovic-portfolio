@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import 'locomotive-scroll/dist/locomotive-scroll.css';
+
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
   --background: #ffffff;
@@ -12,15 +17,37 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+@utility p {
+  padding-inline: clamp(16px, 3.4vw, 40px);
+}
+
+@utility custom-container {
+  padding-inline: clamp(16px, 3.4vw, 40px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+
+@utility content-container {
+  padding: clamp(8px, 2vw, 20px);
+}
+
+@utility scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

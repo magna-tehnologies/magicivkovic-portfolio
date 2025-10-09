@@ -7,10 +7,17 @@ type RootLayoutProps = {
   children: React.ReactNode
 }
 
+import { Poppins } from 'next/font/google'
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '700'],
+})
+
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
-      <body>
+      <body className={poppins.className}>
         <main>{children}</main>
       </body>
     </html>
