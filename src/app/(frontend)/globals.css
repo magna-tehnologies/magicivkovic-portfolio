@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import 'locomotive-scroll/dist/locomotive-scroll.css';
+
+html {
+  scroll-behavior: smooth;
+}
 
 :root {
   --background: #ffffff;
@@ -37,4 +42,12 @@ body {
 
 @utility content-container {
   padding: clamp(8px, 2vw, 20px);
+}
+
+@utility scrollbar-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }

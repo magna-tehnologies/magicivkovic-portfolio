@@ -25,10 +25,10 @@ interface CarouselProviderProps {
 
 export default function CarouselProvider({ children }: CarouselProviderProps) {
   const carouselContainerRef = useRef<HTMLDivElement>(null)
-  const [slide, setSlide] = useState(1)
+  const [slide, setSlide] = useState(0)
 
   const slideCount = carouselContainerRef.current
-    ? carouselContainerRef.current.children.length - 2
+    ? carouselContainerRef.current.children.length
     : 0
 
   const goToSlide = useCallback((index: number, smooth = true) => {
@@ -44,11 +44,15 @@ export default function CarouselProvider({ children }: CarouselProviderProps) {
   }, [])
 
   const goToNextSlide = useCallback(() => {
-    goToSlide(Math.max(slideCount, slide + 1))
+    if (slide < slideCount - 1) {
+      goToSlide(slide + 1)
+    }
   }, [slide, slideCount, goToSlide])
 
   const goToPrevSlide = useCallback(() => {
-    goToSlide(Math.min(1, slide - 1))
+    if (slide > 0) {
+      goToSlide(slide - 1)
+    }
   }, [slide, goToSlide])
 
   const value = useMemo(

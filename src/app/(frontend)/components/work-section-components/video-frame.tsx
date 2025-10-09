@@ -9,6 +9,7 @@ const VideoFrame = ({ src }: VideoFrameProps) => {
         className='h-full w-full object-cover'
         autoPlay
         muted
+        loop
         src={src}
       ></video>
     </div>

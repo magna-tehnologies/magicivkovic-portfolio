@@ -56,7 +56,7 @@ const CTAButton = ({ className }: CTAButtonProps) => {
                   Sta ti je potrebno?
                 </p>
               </div>
-              <div className='rounded-[20px] bg-stone-950 aspect-square h-full'></div>
+              {/* <div className='rounded-[20px] bg-stone-950 aspect-square h-full'></div> */}
             </motion.button>
           )}
           {state == 'course' && (
@@ -78,7 +78,7 @@ const CTAButton = ({ className }: CTAButtonProps) => {
                   Prijavi se na kurs
                 </p>
               </div>
-              <div className='rounded-[20px] bg-stone-950 aspect-square h-full'></div>
+              {/* <div className='rounded-[20px] bg-stone-950 aspect-square h-full'></div> */}
             </motion.button>
           )}
           {state == 'carousel' && (
