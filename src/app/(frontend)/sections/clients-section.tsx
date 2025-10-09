@@ -5,14 +5,15 @@ export interface Client {
   client: string
 }
 interface ClientsSectionProps {
-  header: string
+  header: Content['clientCardHeading']
   clients: Content['clientCards']
 }
 export default function ClientsSection({
   header,
   clients,
 }: ClientsSectionProps) {
-  const objectClients = clients.filter((c) => typeof c !== 'number')
+  const objectClients = clients?.filter((c) => typeof c !== 'number')
+
   return (
     <section className='bg-black'>
       <div className='custom-container flex flex-col gap-[50px] pt-[100px]'>
@@ -20,7 +21,7 @@ export default function ClientsSection({
           {header}
         </p>
         <div className='grid md:grid-cols-2 gap-x-12'>
-          {objectClients.map((client) => (
+          {objectClients?.map((client) => (
             <ClientCard key={client.Place + client.Client} client={client} />
           ))}
         </div>

@@ -1,7 +1,8 @@
+import { Content } from '@/payload-types'
 import { cn } from '../lib/cn'
 
 interface WhatWeDoSectionProps {
-  text: string
+  text: Content['whatWeDo']
   className?: string
 }
 

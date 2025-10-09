@@ -11,7 +11,7 @@ import { useCTA } from '../providers/cta-provider'
 
 export interface TestimonialsSectionProps {
   testimonials: Content['testimonials']
-  testimonialHeader: string
+  testimonialHeader: Content['testimonialText']
   className?: string
 }
 
@@ -46,7 +46,7 @@ export default function TestimonialsSection({
   })
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1])
 
-  const objectTestimonials = testimonials.filter(
+  const objectTestimonials = testimonials?.filter(
     (t): t is TestimonialWithMedia =>
       typeof t !== 'number' && typeof t.picture !== 'number'
   )
@@ -84,7 +84,7 @@ export default function TestimonialsSection({
           }
         /> */}
 
-        {objectTestimonials.map((testimonial, index) => (
+        {objectTestimonials?.map((testimonial, index) => (
           <Testimonial
             key={testimonial.client + index}
             className='w-full shrink-0 h-full'

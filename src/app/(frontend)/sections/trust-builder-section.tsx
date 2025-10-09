@@ -1,6 +1,8 @@
+import { Content } from '@/payload-types'
+
 interface TrustBuilderProps {
-  header: string
-  text: string
+  header: Content['trustBuilderHeading']
+  text: Content['trustBuilderText']
 }
 
 export default function TrustBuilderSection({

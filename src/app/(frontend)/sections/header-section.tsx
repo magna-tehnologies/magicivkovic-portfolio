@@ -1,5 +1,7 @@
+import { Content } from '@/payload-types'
+
 interface HeaderSectionProps {
-  brandName: string
+  brandName?: Content['heroSectionHeader']
 }
 
 export default function HeaderSection({ brandName }: HeaderSectionProps) {

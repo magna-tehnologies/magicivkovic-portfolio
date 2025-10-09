@@ -1,7 +1,9 @@
+import { Content } from '@/payload-types'
+
 interface FinalWordSectionProps {
-  text1: string
-  text2: string
-  text3: string
+  text1: Content['finalWordsText']
+  text2: Content['secondFinalWordsText']
+  text3: Content['thirdFinalWordsText']
 }
 
 export default function FinalWordsSection({
