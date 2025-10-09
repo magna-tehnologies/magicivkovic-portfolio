@@ -1,7 +1,7 @@
 'use client'
 
 import { SITE_URL } from '@/config'
-import { Content, Media } from '@/payload-types'
+import { Content } from '@/payload-types'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useEffect } from 'react'
 import Testimonial from '../components/testimonials-section-components/testimonial'
@@ -13,11 +13,6 @@ export interface TestimonialsSectionProps {
   testimonials: Content['testimonials']
   testimonialHeader: Content['testimonialText']
   className?: string
-}
-
-// refined type: always object, picture is Media
-type TestimonialWithMedia = Exclude<Content['testimonials'][number], number> & {
-  picture: Media
 }
 
 export default function TestimonialsSection({
@@ -46,10 +41,7 @@ export default function TestimonialsSection({
   })
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1])
 
-  const objectTestimonials = testimonials?.filter(
-    (t): t is TestimonialWithMedia =>
-      typeof t !== 'number' && typeof t.picture !== 'number'
-  )
+  const objectTestimonials = testimonials?.filter((t) => typeof t !== 'number')
 
   return (
     <section
@@ -92,7 +84,11 @@ export default function TestimonialsSection({
             client={testimonial.client}
             clientRole={testimonial.clientRole}
             testimonial={testimonial.testemonial}
-            src={SITE_URL + testimonial.picture.url}
+            src={
+              typeof testimonial.picture !== 'number'
+                ? SITE_URL + testimonial.picture.url
+                : ''
+            }
           />
         ))}
 

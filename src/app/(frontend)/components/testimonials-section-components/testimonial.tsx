@@ -3,18 +3,13 @@ import { SITE_URL } from '@/config'
 import Image from 'next/image'
 import { cn } from '../../lib/cn'
 import GradientBackground from '../GradientBackground'
-
-interface TestimonialPicture {
-  url?: string | null
-  alt?: string | null
-}
+import { Media } from '@/payload-types'
 
 interface TestimonialProps {
   client: string
   clientRole: string
   testimonial: string
-  picture: TestimonialPicture
-  // keep src optional — prefer src prop if it's already computed upstream
+  picture: number | Media
   src?: string
   className?: string
 }
@@ -27,7 +22,8 @@ export default function Testimonnial({
   src,
   className,
 }: TestimonialProps) {
-  // prefer provided src, otherwise build from picture.url, otherwise fallback placeholder
+  if (typeof picture === 'number') return null
+
   const imageSrc =
     src ??
     (picture?.url ? SITE_URL + picture.url : '/images/avatar-placeholder.png')
