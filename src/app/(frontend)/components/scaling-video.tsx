@@ -2,13 +2,19 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import VideoSEO from "./seo-video";
 
 interface ScalingVideoProps {
   src: string;
   className?: string;
+  alt: string;
 }
 
-export default function ScalingVideo({ src, className }: ScalingVideoProps) {
+export default function ScalingVideo({
+  src,
+  className,
+  alt,
+}: ScalingVideoProps) {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -28,6 +34,7 @@ export default function ScalingVideo({ src, className }: ScalingVideoProps) {
         muted
         src={src}
       />
+      <VideoSEO name={alt} description={alt} contentUrl={src} />
     </div>
   );
 }

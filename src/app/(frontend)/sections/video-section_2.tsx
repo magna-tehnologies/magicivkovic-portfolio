@@ -47,6 +47,7 @@ export default function VideoSection1({
 
       <div className="sticky top-0 h-[100vh]">
         <ScalingVideo
+          alt={video ? video.alt : "alt"}
           src={SITE_URL + video?.url}
           className="h-full w-full content-container"
         />

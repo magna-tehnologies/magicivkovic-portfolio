@@ -33,7 +33,11 @@ export default function WorkSection({ videos, className }: WorkSectionProps) {
           }}
         >
           {objectVideos?.map((video) => (
-            <VideoFrame key={video.id} src={SITE_URL + video.url} />
+            <VideoFrame
+              alt={video.alt}
+              key={video.id}
+              src={SITE_URL + video.url}
+            />
           ))}
         </motion.div>
       </div>

@@ -22,6 +22,7 @@ export default function VideoSection({ video, className }: VideoSectionProps) {
     <section ref={targetRef} className={cn("h-[2000px] relative", className)}>
       <div className="sticky top-0 h-[100vh]">
         <ScalingVideo
+          alt={video ? video.alt : "alt"}
           src={SITE_URL + video?.url}
           className="h-full w-full content-container"
         />
