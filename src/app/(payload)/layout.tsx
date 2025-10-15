@@ -8,7 +8,6 @@ import React from 'react'
 
 import { importMap } from './admin/importMap.js'
 import './custom.scss'
-import { RefreshRouteOnSave } from '../RefreshRouteOnSave.jsx'
 
 type Args = {
   children: React.ReactNode

@@ -30,9 +30,11 @@ export default async function HomePage() {
     depth: 99,
   })
 
+  console.log(content)
+
   return (
     <CTAProvider>
-      <RefreshRouteOnSave />
+      {/* <RefreshRouteOnSave /> */}
       <CarouselProvider>
         <div className='flex flex-col md:h-[70vh]'>
           <HeaderSection brandName={content.heroSectionHeader} />

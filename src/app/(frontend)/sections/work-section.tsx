@@ -1,5 +1,4 @@
 'use client'
-import { SITE_URL } from '@/config'
 import { Content } from '@/payload-types'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
@@ -33,7 +32,7 @@ export default function WorkSection({ videos, className }: WorkSectionProps) {
           }}
         >
           {objectVideos?.map((video) => (
-            <VideoFrame key={video.id} src={SITE_URL + video.url} />
+            <VideoFrame key={video.id} src={video.url as string} />
           ))}
         </motion.div>
       </div>

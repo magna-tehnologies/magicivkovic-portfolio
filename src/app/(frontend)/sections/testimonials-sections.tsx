@@ -1,6 +1,5 @@
 'use client'
 
-import { SITE_URL } from '@/config'
 import { Content } from '@/payload-types'
 import { motion, useInView, useScroll, useTransform } from 'framer-motion'
 import { useEffect } from 'react'
@@ -86,7 +85,7 @@ export default function TestimonialsSection({
             testimonial={testimonial.testemonial}
             src={
               typeof testimonial.picture !== 'number'
-                ? SITE_URL + testimonial.picture.url
+                ? testimonial.picture.url ?? undefined
                 : ''
             }
           />

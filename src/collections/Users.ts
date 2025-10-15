@@ -1,9 +1,10 @@
+import { SITE_URL } from '@/config'
 import type { CollectionConfig } from 'payload'
 
 export const Users: CollectionConfig = {
   slug: 'users',
   admin: {
-    preview: ({ slug }) => `http://localhost:3000/${slug}`,
+    preview: ({ slug }) => `${SITE_URL}/${slug}`,
     useAsTitle: 'email',
   },
   auth: true,
