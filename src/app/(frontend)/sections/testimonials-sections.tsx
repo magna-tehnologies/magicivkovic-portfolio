@@ -85,7 +85,7 @@ export default function TestimonialsSection({
             testimonial={testimonial.testemonial}
             src={
               typeof testimonial.picture !== 'number'
-                ? (testimonial.picture.url as string)
+                ? testimonial.picture.url ?? undefined
                 : ''
             }
           />

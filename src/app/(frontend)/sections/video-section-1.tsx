@@ -15,7 +15,7 @@ export default function VideoSection({ video, className }: VideoSectionProps) {
   return (
     <section className={cn('h-[2000px] relative', className)}>
       <ScalingVideo
-        src={video?.url as string}
+        src={video?.url ?? undefined}
         className='h-[100vh] sticky top-0 content-container'
       />
     </section>

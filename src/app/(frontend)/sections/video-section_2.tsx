@@ -43,7 +43,7 @@ export default function VideoSection1({
         </p>
       </div>
       <ScalingVideo
-        src={video?.url as string}
+        src={video?.url ?? undefined}
         className='h-[100vh] sticky top-0 content-container'
       />
     </motion.section>

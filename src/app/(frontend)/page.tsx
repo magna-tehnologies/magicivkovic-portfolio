@@ -42,7 +42,7 @@ export default async function HomePage() {
         <CTAButton className='fixed bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50' />
         <WorkSection className='pt-[10vh]' videos={content.bulkVideos} />
 
-        <WhatWeDoSection className='pt-[50px]' text={content.whatWeDo} />
+        {/* <WhatWeDoSection className='pt-[50px]' text={content.whatWeDo} />
 
         {typeof content.fullScreenVideo !== 'number' && (
           <VideoSection1
@@ -86,7 +86,7 @@ export default async function HomePage() {
           text3={content.thirdFinalWordsText}
         />
 
-        <Footer footerText={content.footerText} rights={content.rightsText} />
+        <Footer footerText={content.footerText} rights={content.rightsText} /> */}
       </CarouselProvider>
     </CTAProvider>
   )
