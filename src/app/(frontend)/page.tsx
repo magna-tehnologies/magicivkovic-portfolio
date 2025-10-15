@@ -32,66 +32,65 @@ export default async function HomePage() {
 
   console.log(content)
 
-  return <div>test</div>
+  return (
+    <CTAProvider>
+      <div className='bg-blue-500'>test</div>
+      {/* <RefreshRouteOnSave />
+      <CarouselProvider>
+        <div className='flex flex-col md:h-[70vh]'>
+          <HeaderSection brandName={content.heroSectionHeader} />
 
-  // return (
-  //   <CTAProvider>
-  //     <RefreshRouteOnSave />
-  //     <CarouselProvider>
-  //       <div className='flex flex-col md:h-[70vh]'>
-  //         <HeaderSection brandName={content.heroSectionHeader} />
+          <HeroSection text={content.heroSectionText} className='flex-1' />
+        </div>
+        <CTAButton className='fixed bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50' />
+        <WorkSection className='pt-[10vh]' videos={content.bulkVideos} />
 
-  //         <HeroSection text={content.heroSectionText} className='flex-1' />
-  //       </div>
-  //       <CTAButton className='fixed bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50' />
-  //       <WorkSection className='pt-[10vh]' videos={content.bulkVideos} />
+        <WhatWeDoSection className='pt-[50px]' text={content.whatWeDo} />
 
-  //       <WhatWeDoSection className='pt-[50px]' text={content.whatWeDo} />
+        {typeof content.fullScreenVideo !== 'number' && (
+          <VideoSection1
+            video={content.fullScreenVideo}
+            className='pt-[100px]'
+          />
+        )}
 
-  //       {typeof content.fullScreenVideo !== 'number' && (
-  //         <VideoSection1
-  //           video={content.fullScreenVideo}
-  //           className='pt-[100px]'
-  //         />
-  //       )}
+        <WorkGridSection
+          projects={content.workGridCards}
+          text={content.workGridHeading}
+        />
 
-  //       <WorkGridSection
-  //         projects={content.workGridCards}
-  //         text={content.workGridHeading}
-  //       />
+        {typeof content.secondFullScreenVideo !== 'number' && (
+          <VideoSection2
+            headerText={content.secondVideoText}
+            video={content.secondFullScreenVideo}
+            className='pt-[200px]'
+          />
+        )}
 
-  //       {typeof content.secondFullScreenVideo !== 'number' && (
-  //         <VideoSection2
-  //           headerText={content.secondVideoText}
-  //           video={content.secondFullScreenVideo}
-  //           className='pt-[200px]'
-  //         />
-  //       )}
+        <ClientsSection
+          header={content.clientCardHeading}
+          clients={content.clientCards}
+        />
 
-  //       <ClientsSection
-  //         header={content.clientCardHeading}
-  //         clients={content.clientCards}
-  //       />
+        <TestimonialsSection
+          testimonials={content.testimonials}
+          testimonialHeader={content.testimonialText}
+          className='pt-[200px]'
+        />
 
-  //       <TestimonialsSection
-  //         testimonials={content.testimonials}
-  //         testimonialHeader={content.testimonialText}
-  //         className='pt-[200px]'
-  //       />
+        <TrustBuilderSection
+          header={content.trustBuilderHeading}
+          text={content.trustBuilderText}
+        />
 
-  //       <TrustBuilderSection
-  //         header={content.trustBuilderHeading}
-  //         text={content.trustBuilderText}
-  //       />
+        <FinalWordsSection
+          text1={content.finalWordsText}
+          text2={content.secondFinalWordsText}
+          text3={content.thirdFinalWordsText}
+        />
 
-  //       <FinalWordsSection
-  //         text1={content.finalWordsText}
-  //         text2={content.secondFinalWordsText}
-  //         text3={content.thirdFinalWordsText}
-  //       />
-
-  //       <Footer footerText={content.footerText} rights={content.rightsText} />
-  //     </CarouselProvider>
-  //   </CTAProvider>
-  // )
+        <Footer footerText={content.footerText} rights={content.rightsText} />
+      </CarouselProvider> */}
+    </CTAProvider>
+  )
 }
