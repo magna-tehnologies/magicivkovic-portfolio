@@ -21,15 +21,18 @@ import WorkGridSection from './sections/work-grid-section'
 import WorkSection from './sections/work-section'
 
 export default async function HomePage() {
-  return <div>test</div>
-  // const payloadConfig = await config
-  // const payload = await getPayload({ config: payloadConfig })
+  const payloadConfig = await config
+  const payload = await getPayload({ config: payloadConfig })
 
-  // const content = await payload.findGlobal({
-  //   draft: true,
-  //   slug: 'content',
-  //   depth: 99,
-  // })
+  const content = await payload.findGlobal({
+    draft: true,
+    slug: 'content',
+    depth: 99,
+  })
+
+  console.log(content)
+
+  return <div>test</div>
 
   // return (
   //   <CTAProvider>
