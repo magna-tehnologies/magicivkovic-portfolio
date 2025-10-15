@@ -35,8 +35,8 @@ export default async function HomePage() {
   return (
     <CTAProvider>
       <div className='bg-blue-500'>test</div>
-      {/* <RefreshRouteOnSave />
-      <CarouselProvider>
+      <RefreshRouteOnSave />
+      {/* <CarouselProvider>
         <div className='flex flex-col md:h-[70vh]'>
           <HeaderSection brandName={content.heroSectionHeader} />
 
