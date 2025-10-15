@@ -39,8 +39,8 @@ export default async function HomePage() {
 
           <HeroSection text={content.heroSectionText} className='flex-1' />
         </div>
-        <CTAButton className='fixed bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50' />
-        <WorkSection className='pt-[10vh]' videos={content.bulkVideos} />
+        {/* <CTAButton className='fixed bottom-4 md:bottom-10 left-1/2 -translate-x-1/2 z-50' />
+        <WorkSection className='pt-[10vh]' videos={content.bulkVideos} /> */}
 
         {/* <WhatWeDoSection className='pt-[50px]' text={content.whatWeDo} />
 
