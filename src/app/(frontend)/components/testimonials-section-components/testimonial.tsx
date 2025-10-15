@@ -1,5 +1,4 @@
 // src/components/testimonials-section-components/testimonial.tsx
-import { SITE_URL } from '@/config'
 import Image from 'next/image'
 import { cn } from '../../lib/cn'
 import GradientBackground from '../GradientBackground'
@@ -25,8 +24,7 @@ export default function Testimonnial({
   if (typeof picture === 'number') return null
 
   const imageSrc =
-    src ??
-    (picture?.url ? SITE_URL + picture.url : '/images/avatar-placeholder.png')
+    src ?? (picture?.url ? picture.url : '/images/avatar-placeholder.png')
 
   const altText = picture?.alt ?? client ?? ''
 

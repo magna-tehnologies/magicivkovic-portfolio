@@ -1,7 +1,6 @@
 'use client'
 
-import { SITE_URL } from '@/config'
-import { Content, Media } from '@/payload-types'
+import { Content } from '@/payload-types'
 import { motion, useInView } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import ScalingVideo from '../components/scaling-video'
@@ -44,7 +43,7 @@ export default function VideoSection1({
         </p>
       </div>
       <ScalingVideo
-        src={SITE_URL + video?.url}
+        src={video?.url as string}
         className='h-[100vh] sticky top-0 content-container'
       />
     </motion.section>
