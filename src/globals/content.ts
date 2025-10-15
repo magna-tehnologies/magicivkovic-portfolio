@@ -1,4 +1,5 @@
 import type { GlobalConfig } from 'payload'
+import { SITE_URL } from '@/config'
 
 export const Content: GlobalConfig = {
   slug: 'content',
@@ -7,7 +8,7 @@ export const Content: GlobalConfig = {
   },
   admin: {
     livePreview: {
-      url: 'http://localhost:3000',
+      url: SITE_URL,
     },
   },
   versions: {
