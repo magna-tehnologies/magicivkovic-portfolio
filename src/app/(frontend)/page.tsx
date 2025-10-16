@@ -30,8 +30,6 @@ export default async function HomePage() {
     depth: 99,
   })
 
-  console.log(content)
-
   return (
     <CTAProvider>
       {/* <RefreshRouteOnSave /> */}
