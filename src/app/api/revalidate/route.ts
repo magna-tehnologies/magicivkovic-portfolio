@@ -10,10 +10,10 @@ export async function GET(request: Request) {
   //   return NextResponse.json({ message: 'Invalid token' }, { status: 401 })
   // }
 
-  if (!slug) {
-    console.log('Missing slug')
-    return NextResponse.json({ message: 'Missing slug' }, { status: 400 })
-  }
+  // if (!slug) {
+  //   console.log('Missing slug')
+  //   return NextResponse.json({ message: 'Missing slug' }, { status: 400 })
+  // }
 
   try {
     console.log('Revalidated path')
