@@ -1,4 +1,6 @@
 import type { GlobalConfig } from 'payload'
+import { SITE_URL } from '@/config'
+import { revalidatePage } from '@/utils/updateFrontend'
 
 export const Content: GlobalConfig = {
   slug: 'content',
@@ -7,7 +9,7 @@ export const Content: GlobalConfig = {
   },
   admin: {
     livePreview: {
-      url: 'http://localhost:3000',
+      url: SITE_URL,
     },
   },
   versions: {
@@ -16,6 +18,14 @@ export const Content: GlobalConfig = {
         interval: 375,
       },
     },
+  },
+  hooks: {
+    afterChange: [
+      ({ doc, ...rest }) => {
+        // console.log(doc, { ...rest })
+        revalidatePage(doc.slug)
+      },
+    ],
   },
   fields: [
     {
